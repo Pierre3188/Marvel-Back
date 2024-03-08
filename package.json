@@ -8,5 +8,17 @@
     "express-fileupload": "^1.4.3",
     "mongoose": "^8.2.1",
     "uid2": "^1.0.0"
-  }
+  },
+  "name": "vinted",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
