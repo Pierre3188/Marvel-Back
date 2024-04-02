@@ -1,19 +1,23 @@
 {
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.6.2",
+    "@stripe/stripe-js": "^3.2.0",
+    "add": "^2.0.6",
     "cloudinary": "^2.0.3",
     "cors": "^2.8.5",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
-    "express": "^4.18.3",
+    "express": "^4.19.2",
     "express-fileupload": "^1.4.3",
     "mongoose": "^8.2.1",
-    "uid2": "^1.0.0"
+    "stripe": "^14.23.0",
+    "uid2": "^1.0.0",
+    "yarn": "^1.22.22"
   },
   "name": "vinted",
   "description": "",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"

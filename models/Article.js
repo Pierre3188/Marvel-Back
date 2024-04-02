@@ -9,6 +9,7 @@ const Article = mongoose.model("Article", {
   product_details: Array,
   product_image: Object,
   owner: { type: mongoose.Schema.Types.ObjectId, ref: user },
+  product_pictures: Array,
 });
 
 //export du modèle user

@@ -46,8 +46,17 @@ router.delete(
 //Modifier un article
 router.put("/offer/modify", isAuthenticated, fileUpload(), async (req, res) => {
   try {
-    const { title, description, price, condition, city, brand, size, color } =
-      req.body;
+    const {
+      title,
+      description,
+      price,
+      condition,
+      city,
+      brand,
+      size,
+      color,
+      status,
+    } = req.body;
     token = req.user;
     //console.log(title, description);
 
@@ -72,6 +81,7 @@ router.put("/offer/modify", isAuthenticated, fileUpload(), async (req, res) => {
         title: title,
         description: description,
         price: price,
+        status: status,
         product: [
           {
             brand: brand,
@@ -108,6 +118,8 @@ router.post(
         return res.status(401).json({ message: "Il manque une image" });
       }
 
+      //console.log(Object.keys(req.files));
+
       const newarticle = new Article({
         product_name: title,
         product_description: description,
@@ -131,21 +143,33 @@ router.post(
         ],
         product_image: { secure_url: "" },
         owner: req.user,
+        product_pictures: [],
       });
 
       await newarticle.save();
-      console.log(newarticle);
+      // console.log(newarticle);
 
       const root = `vinted/offers/${newarticle.id}`;
       //console.log(root);
-      const convertedPict = convertToBase64(req.files.picture);
-      const uploadResult = await cloudinary.uploader.upload(convertedPict, {
-        folder: root,
-      });
+
+      let arr_files = [];
+      arr_files = Object.keys(req.files);
+      //console.log(req.files[arr_files[0]]);
+
+      const image_arr = [];
+      let uploadResult;
+      for (let i = 0; i < arr_files.length; i++) {
+        const convertedPict = convertToBase64(req.files[arr_files[i]]);
+        uploadResult = await cloudinary.uploader.upload(convertedPict, {
+          folder: root,
+        });
+        console.log(uploadResult);
+        image_arr.push(uploadResult);
+      }
       const data_owner = await Article.findByIdAndUpdate(
         newarticle.id,
         {
-          picture: { uploadResult },
+          product_pictures: uploadResult,
         },
         { new: true }
       ).populate("owner", "account");
@@ -172,6 +196,7 @@ router.post(
           },
         },
         product_image: { secure_url: data_owner.picture },
+        product_pictures: image_arr,
       };
       // console.log(display);
       res.status(200).json({ message: display });
