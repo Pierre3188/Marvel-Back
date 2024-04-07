@@ -7,9 +7,9 @@ const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary").v2; // On n'oublie pas le `.v2` à la fin
 
 cloudinary.config({
-  cloud_name: "dtycsg4iv",
-  api_key: "827646295964289",
-  api_secret: "ct1N_9V_1RfMzjgT8AF8W-TQk10",
+  cloud_name: CLOUD_NAME,
+  api_key: CLOUD_API_KEY,
+  api_secret: CLOUD_API_SECRET,
 });
 
 //Import du modèle User
