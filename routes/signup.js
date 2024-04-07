@@ -7,7 +7,7 @@ const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary").v2; // On n'oublie pas le `.v2` à la fin
 
 cloudinary.config({
-  cloud_name: CLOUD_NAME,
+  cloud_name: dtycsg4iv,
   api_key: CLOUD_API_KEY,
   api_secret: CLOUD_API_SECRET,
 });
