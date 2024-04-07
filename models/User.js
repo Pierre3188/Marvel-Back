@@ -6,7 +6,6 @@ const user = mongoose.model("User", {
     username: { type: String, required: true },
     avatar: { type: Object, default: { secure_url: {} } },
   },
-  newsletter: { type: Boolean, default: false },
   token: String,
   hash: String,
   salt: String,

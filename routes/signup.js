@@ -75,7 +75,7 @@ router.post("/user/signup", fileUpload(), async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: "Erreur lors de l'enregistrement :(" + error.message,
+      message: "Erreur lors de l'enregistrement :(" + error.message.data,
     });
   }
 });

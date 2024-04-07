@@ -33,7 +33,7 @@ router.post("/user/login", async (req, res) => {
       return res.status(401).json({ message: "Email ou password incorrect" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Erreur lors de la requete de login" });
+    res.status(500).json({ message: error.getUser.data });
   }
 });
 
